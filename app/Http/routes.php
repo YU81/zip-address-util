@@ -14,3 +14,9 @@
 $app->get('/', function () use ($app) {
     return $app->welcome();
 });
+
+$app->get('address', 'AddressController@index');
+$app->get('address/{zip}', 'AddressController@index');
+$app->get('address/{zip}/{ken_furi}/', 'AddressController@index');
+$app->get('address/{zip}/{ken_furi}/{city_furi}', 'AddressController@index');
+$app->get('address/{zip}/{ken_furi}/{city_furi}/{town_furi}', 'AddressController@index');
