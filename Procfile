@@ -1,1 +1,1 @@
-web: fuel/vendor/bin/heroku-php-nginx -C nginx_app.config public/
+web: vendor/bin/heroku-php-nginx -C nginx_app.config public/
