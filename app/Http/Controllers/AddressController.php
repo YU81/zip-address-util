@@ -38,6 +38,9 @@ class AddressController extends Controller
             'town_name',
             'town_furi',
             'kyoto_street',
+            'block_name',
+            'office_name',
+            'office_address',
         ]);
 
         return ($results->count() > 0)
@@ -88,6 +91,9 @@ class AddressController extends Controller
             'town_name',
             'town_furi',
             'kyoto_street',
+            'block_name',
+            'office_name',
+            'office_address',
         ]);
 
         $resultCount = count($results);
