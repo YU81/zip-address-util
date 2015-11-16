@@ -17,7 +17,7 @@
     <?php if (isset($results)) {
         foreach ($results as $addr) {
             /** @var App\Models\Address $addr */
-            echo '<div><span>' . $addr->ken_name . $addr->city_name . $addr->town_name . $addr->town_memo . $addr->kyoto_street . $addr->block_name . '</span></div>';
+            echo '<div><span>' . $addr->getWholeAddress() . '</span></div>';
         }
     } ?>
 </div>
