@@ -92,6 +92,7 @@ class AddressController extends Controller
     /**
      * @param string $furi
      * @param Builder $q
+     * @param string $colName
      */
     private function _filterFuri($furi, $q, $colName)
     {
