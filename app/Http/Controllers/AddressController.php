@@ -70,9 +70,15 @@ class AddressController extends Controller
         $this->_filterFuri($searchWord, $q, 'ken_furi');
         $this->_filterFuri($searchWord, $q, 'city_furi');
         $this->_filterFuri($searchWord, $q, 'town_furi');
+        $this->_filterKanji($searchWord, $q, 'ken_name');
+        $this->_filterKanji($searchWord, $q, 'city_name');
+        $this->_filterKanji($searchWord, $q, 'town_name');
+        $this->_filterKanji($searchWord, $q, 'kyoto_street');
+        $this->_filterKanji($searchWord, $q, 'block_name');
+
 
         /** @var \Illuminate\Database\Eloquent\Collection|static[] $results */
-        $results = $q->take(10)->get([
+        $results = $q->take(100)->get([
             'ken_id',
             'zip',
             'ken_name',
