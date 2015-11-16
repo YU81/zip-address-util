@@ -32,6 +32,30 @@ use Illuminate\Database\Eloquent\Model;
 class Address extends Model
 {
     protected $table = 'ad_address';
+
+    public function getWholeAddress()
+    {
+        $address = "";
+        foreach ([
+                     'zip',
+                     'ken_name',
+                     'city_name',
+                     'town_name',
+                     'town_memo',
+                     'kyoto_street',
+                     'block_name',
+                     'memo',
+                     'office_name',
+                     'office_address',
+                 ] as $name) {
+            if (isset($this->{$name}) && $this->{$name} !== 'NULL') {
+                $address .= ' ' . $this->{$name};
+            }
+        }
+
+        return $address;
+
+    }
 }
 
 /*
