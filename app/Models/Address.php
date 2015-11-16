@@ -3,6 +3,32 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Address
+ * @package App\Models
+ *
+ * @property int $id
+ * @property int $ken_id
+ * @property int $city_id
+ * @property int $town_id
+ * @property string $zip
+ * @property int $office_flg
+ * @property int $delete_flg
+ * @property string $ken_name
+ * @property string $ken_furi
+ * @property string $town_name
+ * @property string $town_furi
+ * @property string $town_memo
+ * @property string $kyoto_street
+ * @property string $block_name
+ * @property string $block_furi
+ * @property string $memo
+ * @property string $office_name
+ * @property string $office_furi
+ * @property string $office_address
+ * @property int $new_id
+ *
+ */
 class Address extends Model
 {
     protected $table = 'ad_address';
