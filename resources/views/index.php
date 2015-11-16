@@ -13,7 +13,7 @@
     <input type="text" name="search" title="search" id="search" cols="30" rows="10">
     <button>検索</button>
 </form>
-<div label="result" id="result">
+<div id="result">
     <?php if (isset($results)) {
         foreach ($results as $addr) {
             /** @var App\Models\Address $addr */
