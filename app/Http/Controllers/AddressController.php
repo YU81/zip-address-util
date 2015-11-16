@@ -12,7 +12,7 @@ class AddressController extends Controller
     {
         $addr = new Models\Address();
         /** @var Builder $q */
-        $q    = $addr->newQuery();
+        $q = $addr->newQuery();
         if (isset($zip)) {
             if ($zip != "_" && $zip != "-") {
                 $decoded_zip = rawurldecode($zip);
