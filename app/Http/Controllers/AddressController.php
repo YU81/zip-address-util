@@ -103,4 +103,19 @@ class AddressController extends Controller
             }
         }
     }
+
+    /**
+     * @param string $kanji
+     * @param Builder $q
+     * @param string $colName
+     */
+    private function _filterKanji($kanji, $q, $colName)
+    {
+        if (isset($kanji)) {
+            $decoded_kanji = rawurldecode($kanji);
+            if ($kanji != "_" && $kanji != "-") {
+                $q->orWhere($colName, 'like', '%' . $decoded_kanji . '%');
+            }
+        }
+    }
 }
