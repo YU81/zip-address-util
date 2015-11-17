@@ -1,3 +1,7 @@
 language: php
+
+before_script:
+    - composer install --dev
+    - composer update
 php:
   - 5.6
