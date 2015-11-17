@@ -14,7 +14,7 @@ class AddressController extends Controller
         /** @var Builder $q */
         $q = $addr->newQuery();
         if (isset($zip)) {
-            if ($zip != "_" && $zip != "-") {
+            if ($zip !== '_' && $zip !== '-') {
                 $decoded_zip = rawurldecode($zip);
                 $decoded_zip = mb_convert_kana($decoded_zip, "a");
                 mb_regex_encoding('UTF-8');
@@ -115,7 +115,7 @@ class AddressController extends Controller
         if (isset($furi)) {
             $decoded_furi = rawurldecode($furi);
             $decoded_furi = mb_convert_kana($decoded_furi, "CK");
-            if ($furi != "_" && $furi != "-") {
+            if ($furi !== '_' && $furi !== '-') {
                 $q->orWhere($colName, 'like', '%' . $decoded_furi . '%');
             }
         }
@@ -130,7 +130,7 @@ class AddressController extends Controller
     {
         if (isset($kanji)) {
             $decoded_kanji = rawurldecode($kanji);
-            if ($kanji != "_" && $kanji != "-") {
+            if ($kanji !== '_' && $kanji !== '-') {
                 $q->orWhere($colName, 'like', '%' . $decoded_kanji . '%');
             }
         }
