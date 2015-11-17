@@ -17,6 +17,11 @@ class AddressController extends Controller
             if ($zip != "_" && $zip != "-") {
                 $decoded_zip = rawurldecode($zip);
                 $decoded_zip = mb_convert_kana($decoded_zip, "a");
+                mb_regex_encoding('UTF-8');
+                mb_internal_encoding('UTF-8');
+
+                $decoded_zip = mb_ereg_replace('[-ー－―]', '', $decoded_zip);
+
                 if (strlen($decoded_zip) == 7) {
                     $decoded_zip = substr($decoded_zip, 0, 3) . '-' . substr($decoded_zip, 3, 4);
                     $q->orwhere('zip', '=', $decoded_zip);
@@ -78,7 +83,6 @@ class AddressController extends Controller
         $this->_filterKanji($searchWord, $q, 'town_name');
         $this->_filterKanji($searchWord, $q, 'kyoto_street');
         $this->_filterKanji($searchWord, $q, 'block_name');
-
 
         /** @var \Illuminate\Database\Eloquent\Collection|static[] $results */
         $results = $q->take(100)->get([
