@@ -37,7 +37,7 @@
             foreach ($results as $addr) {
                 /** @var App\Models\Address $addr */
                 echo '<tr>';
-                echo '<td>' . $addr->zip . '</td>' . '<td><span>' . $addr->getWholeAddress() . '</span></td>';
+                echo '<td>' . $addr->zip . '</td>' . '<td><span>' . $addr->getWholeAddress() . '</span></td><td><span>' . $addr->getWholeAddressReading() . '</span></td>';
                 echo '</tr>';
             }
             echo '</table>';
