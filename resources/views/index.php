@@ -10,7 +10,6 @@
 <body>
 <h1>Zip Address Util</h1>
 <form name="search_form" method="get" action="/address/result">
-    <input type="text" name="search" title="search" id="search" cols="30" rows="10">
     <button>検索</button>
 </form>
 <div id="result">
@@ -20,6 +19,13 @@
             echo '<div><span>' . $addr->getWholeAddress() . '</span></div>';
         }
     } ?>
+    <input type="text" name="search" title="search" id="search" cols="30" rows="10"
+                   value=<?php
+                   /** @var string $searchWord */
+                   if (isset($searchWord)) {
+                       echo $searchWord;
+                   } ?>
+            >
 </div>
 </body>
 </html>

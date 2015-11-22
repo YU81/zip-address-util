@@ -102,7 +102,7 @@ class AddressController extends Controller
 
         $resultCount = count($results);
 
-        return view('index', ['results' => $results, 'count' => $resultCount]);
+        return view('index', ['results' => $results, 'count' => $resultCount, 'searchWord' => $searchWord]);
     }
 
     /**
