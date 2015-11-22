@@ -35,25 +35,48 @@ class Address extends Model
 
     public function getWholeAddress()
     {
-        $address = "";
-        foreach ([
-                     'ken_name',
-                     'city_name',
-                     'town_name',
-                     'town_memo',
-                     'kyoto_street',
-                     'block_name',
-                     'memo',
-                     'office_name',
-                     'office_address',
-                 ] as $name) {
+        return $this->getConcatenatedFields([
+            'ken_name',
+            'city_name',
+            'town_name',
+            'town_memo',
+            'kyoto_street',
+            'block_name',
+            'memo',
+            'office_name',
+            'office_address',
+        ]);
+    }
+
+    public function getWholeAddressReading()
+    {
+        return $this->getConcatenatedFields([
+            'ken_furi',
+            'city_furi',
+            'town_furi',
+            'block_furi',
+            'office_furi',
+        ]);
+    }
+
+    /**
+     * @param string[] $fieldNames
+     * @param string $separator
+     * @return string
+     */
+    private function getConcatenatedFields($fieldNames, $separator = ' ')
+    {
+        $result = '';
+        if (count($fieldNames) < 1) {
+            return $result;
+        }
+        foreach ($fieldNames as $name) {
             if (isset($this->{$name}) && $this->{$name} !== 'NULL') {
-                $address .= ' ' . $this->{$name};
+                $result .= $separator . $this->{$name};
             }
         }
 
-        return $address;
-
+        return $result;
     }
 }
 
