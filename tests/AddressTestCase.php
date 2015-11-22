@@ -2,7 +2,7 @@
 
 class AddressTestCase extends TestCase
 {
-    public function dataBaseAccess()
+    public function testDataBaseAccess()
     {
         $address = App\Models\Address::all()->take(1);
 
