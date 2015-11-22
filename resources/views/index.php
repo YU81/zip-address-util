@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Zip Address Util</title>
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
-
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap-theme.min.css">
 </head>
 <body>
 <h1>Zip Address Util</h1>
@@ -27,5 +26,6 @@
                    } ?>
             >
 </div>
+<script src="/assets/js/jquery.min.js"></script>
 </body>
 </html>
