@@ -19,7 +19,7 @@
             echo '<div><span>' . $addr->getWholeAddress() . '</span></div>';
         }
     } ?>
-    <input type="text" name="search" title="search" id="search" cols="30" rows="10"
+    <input type="text" name="search" title="search" id="search"
                    value=<?php
                    /** @var string $searchWord */
                    if (isset($searchWord)) {
