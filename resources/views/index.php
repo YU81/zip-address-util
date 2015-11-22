@@ -28,7 +28,7 @@
     <div id="result" class="row">
         <?php
         /** @var int $count */
-        if ($count === 0) {
+        if (@$count === 0) {
             echo 'マッチする検索結果はありませんでした。';
         } elseif (isset($results)) {
             echo '<span>' . $count . '件見つかりました。' . '</span>';
