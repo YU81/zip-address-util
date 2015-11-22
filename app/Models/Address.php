@@ -37,7 +37,6 @@ class Address extends Model
     {
         $address = "";
         foreach ([
-                     'zip',
                      'ken_name',
                      'city_name',
                      'town_name',
