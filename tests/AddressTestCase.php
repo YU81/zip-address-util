@@ -1,6 +1,6 @@
 <?php
 
-class AddressTestCase extends TestCase
+class AddressTest extends TestCase
 {
     public function testDataBaseAccess()
     {
