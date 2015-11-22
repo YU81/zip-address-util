@@ -4,9 +4,10 @@ class AddressTestCase extends TestCase
 {
     public function testDataBaseAccess()
     {
-        $address = App\Models\Address::all()->take(1);
+        $address = new App\Models\Address();
+        $results = $address->query()->where('zip', '001-0000')->get();
 
-        self::assertTrue(count($address) === 1);
+        self::assertTrue(count($results) === 1);
     }
 
 }
