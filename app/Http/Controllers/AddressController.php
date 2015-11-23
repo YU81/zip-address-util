@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Input;
 
 class AddressController extends Controller
@@ -11,7 +10,7 @@ class AddressController extends Controller
     public function get($zip = null, $ken_furi = null, $city_furi = null, $town_furi = null)
     {
         $addr = new Models\Address();
-        /** @var Builder $q */
+        /** @var \Illuminate\Database\Query\Builder $q */
         $q           = $addr->newQuery();
         $decoded_zip = Models\Address::processZip($zip);
         $q->orWhere('zip', '=', $decoded_zip);
@@ -51,7 +50,7 @@ class AddressController extends Controller
         $searchWord = Input::get('search', '');
 
         $addr = new Models\Address();
-        /** @var Builder $q */
+        /** @var \Illuminate\Database\Query\Builder $q */
         $q                  = $addr->newQuery();
         $decoded_searchWord = Models\Address::processZip($searchWord);
         $q->orWhere('zip', '=', $decoded_searchWord);
