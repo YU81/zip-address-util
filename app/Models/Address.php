@@ -87,6 +87,37 @@ class Address extends Model
     }
 
     /**
+     * @param string $furi
+     * @param \Illuminate\Database\Query\Builder $q
+     * @param string $colName
+     */
+    public static function filterQueryFuri($furi, $q, $colName)
+    {
+        if (isset($furi)) {
+            $decoded_furi = rawurldecode($furi);
+            $decoded_furi = mb_convert_kana($decoded_furi, "CK");
+            if ($furi !== '_' && $furi !== '-') {
+                $q->orWhere($colName, 'like', '%' . $decoded_furi . '%');
+            }
+        }
+    }
+
+    /**
+     * @param string $kanji
+     * @param \Illuminate\Database\Query\Builder $q
+     * @param string $colName
+     */
+    public static function filterQueryKanji($kanji, $q, $colName)
+    {
+        if (isset($kanji)) {
+            $decoded_kanji = rawurldecode($kanji);
+            if ($kanji !== '_' && $kanji !== '-') {
+                $q->orWhere($colName, 'like', '%' . $decoded_kanji . '%');
+            }
+        }
+    }
+
+    /**
      * @param string[] $fieldNames
      * @param string $separator
      * @return string
