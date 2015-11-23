@@ -28,4 +28,53 @@ class AddressTest extends TestCase
         $processed2 = App\Models\Address::processZip($zip, false);
         self::assertTrue($processed2 === $zip);
     }
+
+    public function testFilterFuri()
+    {
+        $furiQueries  = ['しんじゅく', 'シンジュク', 'ｼﾝｼﾞｭｸ'];
+        $trueColumns  = ['city_furi', 'town_furi'];
+        $falseColumns = ['ken_furi'];
+
+        foreach ($furiQueries as $furi) {
+            foreach ($trueColumns as $trueColumn) {
+                /** @var \Illuminate\Database\Query\Builder $q */
+                $addr = new \App\Models\Address();
+                $q    = $addr->newQuery();
+                \App\Models\Address::filterQueryFuri($furi, $q, $trueColumn);
+                $result = $q->get(['id']);
+                self::assertTrue(count($result) > 0);
+            }
+            foreach ($falseColumns as $falseColumn) {
+                $addr = new \App\Models\Address();
+                $q    = $addr->newQuery();
+                \App\Models\Address::filterQueryFuri($furi, $q, $falseColumn);
+                $result = $q->get(['id']);
+                self::assertTrue(count($result) === 0);
+            }
+        }
+    }
+
+    public function testFilterKanji()
+    {
+        $kanji        = '新宿';
+        $trueColumns  = ['city_name', 'town_name'];
+        $falseColumns = ['ken_name'];
+
+        foreach ($trueColumns as $trueColumn) {
+            /** @var \Illuminate\Database\Query\Builder $q */
+            $addr = new \App\Models\Address();
+            $q    = $addr->newQuery();
+            \App\Models\Address::filterQueryFuri($kanji, $q, $trueColumn);
+            $result = $q->get(['id']);
+            self::assertTrue(count($result) > 0);
+        }
+        foreach ($falseColumns as $falseColumn) {
+            /** @var \Illuminate\Database\Query\Builder $q */
+            $addr = new \App\Models\Address();
+            $q    = $addr->newQuery();
+            \App\Models\Address::filterQueryFuri($kanji, $q, $falseColumn);
+            $result = $q->get(['id']);
+            self::assertTrue(count($result) === 0);
+        }
+    }
 }
