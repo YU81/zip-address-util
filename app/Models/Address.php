@@ -60,6 +60,33 @@ class Address extends Model
     }
 
     /**
+     * @param string $zip
+     * @param bool $withHyphen
+     * @return string
+     */
+    public static function processZip($zip, $withHyphen = true)
+    {
+        if (!isset($zip)) {
+            return '';
+        }
+
+        $returnZip = $zip;
+        if ($zip !== '_' && $zip !== '-') {
+            $returnZip = rawurldecode($zip);
+            $returnZip = mb_convert_kana($returnZip, "a");
+            mb_regex_encoding('UTF-8');
+            mb_internal_encoding('UTF-8');
+            $returnZip = mb_ereg_replace('[-ー－―]', '', $returnZip);
+        }
+
+        if ($withHyphen && strlen($returnZip) === 7) {
+            $returnZip = substr($returnZip, 0, 3) . '-' . substr($returnZip, 3, 4);
+        }
+
+        return $returnZip;
+    }
+
+    /**
      * @param string[] $fieldNames
      * @param string $separator
      * @return string
