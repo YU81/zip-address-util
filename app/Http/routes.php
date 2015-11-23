@@ -15,11 +15,11 @@ $app->get('/', function () use ($app) {
     return $app->welcome();
 });
 
-$app->get('api/address', 'AddressController@get');
-$app->get('api/address/{zip}', 'AddressController@get');
-$app->get('api/address/{zip}/{ken_furi}/', 'AddressController@get');
-$app->get('api/address/{zip}/{ken_furi}/{city_furi}', 'AddressController@get');
-$app->get('api/address/{zip}/{ken_furi}/{city_furi}/{town_furi}', 'AddressController@get');
+$app->get('api/address', 'AddressApiController@get');
+$app->get('api/address/{zip}', 'AddressApiController@get');
+$app->get('api/address/{zip}/{ken_furi}/', 'AddressApiController@get');
+$app->get('api/address/{zip}/{ken_furi}/{city_furi}', 'AddressApiController@get');
+$app->get('api/address/{zip}/{ken_furi}/{city_furi}/{town_furi}', 'AddressApiController@get');
 
 $app->get('/', 'AddressController@index');
 $app->get('/address', 'AddressController@index');

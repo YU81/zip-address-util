@@ -82,35 +82,4 @@ class AddressController extends Controller
 
         return view('index', ['results' => $results, 'count' => $resultCount, 'searchWord' => $searchWord]);
     }
-
-    /**
-     * @param string $furi
-     * @param Builder $q
-     * @param string $colName
-     */
-    private function _filterFuri($furi, $q, $colName)
-    {
-        if (isset($furi)) {
-            $decoded_furi = rawurldecode($furi);
-            $decoded_furi = mb_convert_kana($decoded_furi, "CK");
-            if ($furi !== '_' && $furi !== '-') {
-                $q->orWhere($colName, 'like', '%' . $decoded_furi . '%');
-            }
-        }
-    }
-
-    /**
-     * @param string $kanji
-     * @param Builder $q
-     * @param string $colName
-     */
-    private function _filterKanji($kanji, $q, $colName)
-    {
-        if (isset($kanji)) {
-            $decoded_kanji = rawurldecode($kanji);
-            if ($kanji !== '_' && $kanji !== '-') {
-                $q->orWhere($colName, 'like', '%' . $decoded_kanji . '%');
-            }
-        }
-    }
 }
