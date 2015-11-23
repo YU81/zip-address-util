@@ -48,8 +48,9 @@ class AddressApiController extends Controller
             return $result;
         }, $results->toArray());
 
+        $date = date('Y/m/d H:i:s');
         return ($results->count() > 0)
-            ? response()->json($resultsArray)
-            : response()->json(['error' => 'error']);
+            ? response()->json(['error' => 'success', 'date' => $date, 'count' => $results->count(), 'results' => $resultsArray])
+            : response()->json(['error' => 'error', 'date' => $date, 'count' => 0]);
     }
 }
