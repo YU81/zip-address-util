@@ -38,7 +38,9 @@ class AddressApiController extends Controller
         // NULLのフィールドを省略
         $resultsArray = array_map(function ($result) use ($columns) {
             foreach ($columns as $col) {
-                if (isset($result[$col]) && $result[$col] === 'NULL') {
+                if (array_key_exists($col, $result)
+                    && ($result[$col] === 'NULL' || trim(mb_convert_kana($result[$col], 's')) === '')
+                ) {
                     unset($result[$col]);
                 }
             }
