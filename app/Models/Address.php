@@ -76,7 +76,7 @@ class Address extends Model
             $returnZip = mb_convert_kana($returnZip, "a");
             mb_regex_encoding('UTF-8');
             mb_internal_encoding('UTF-8');
-            $returnZip = mb_ereg_replace('[-ー－―]', '', $returnZip);
+            $returnZip = mb_ereg_replace('[-ー－―—]', '', $returnZip);
         }
 
         if ($withHyphen && strlen($returnZip) === 7) {
