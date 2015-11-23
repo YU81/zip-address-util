@@ -95,7 +95,7 @@ class Address extends Model
     {
         if (isset($furi)) {
             $decoded_furi = rawurldecode($furi);
-            $decoded_furi = mb_convert_kana($decoded_furi, "CK");
+            $decoded_furi = mb_convert_kana($decoded_furi, "CKV");
             if ($furi !== '_' && $furi !== '-') {
                 $q->orWhere($colName, 'like', '%' . $decoded_furi . '%');
             }
