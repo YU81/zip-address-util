@@ -19,7 +19,7 @@ class AddressApiController extends Controller
         }
 
         /** @var \Illuminate\Database\Eloquent\Collection|static[] $results */
-        $results = $q->take(10)->get([
+        $columns = [
             'ken_id',
             'zip',
             'ken_name',
@@ -32,10 +32,22 @@ class AddressApiController extends Controller
             'block_name',
             'office_name',
             'office_address',
-        ]);
+        ];
+
+        $results      = $q->take(10)->get($columns);
+        // NULLのフィールドを省略
+        $resultsArray = array_map(function ($result) use ($columns) {
+            foreach ($columns as $col) {
+                if (isset($result[$col]) && $result[$col] === 'NULL') {
+                    unset($result[$col]);
+                }
+            }
+
+            return $result;
+        }, $results->toArray());
 
         return ($results->count() > 0)
-            ? response()->json($results->toArray())
+            ? response()->json($resultsArray)
             : response()->json(['error' => 'error']);
     }
 }
