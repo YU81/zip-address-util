@@ -12,22 +12,10 @@ class AddressController extends Controller
     {
         $addr = new Models\Address();
         /** @var Builder $q */
-        $q = $addr->newQuery();
-        if (isset($zip)) {
-            if ($zip !== '_' && $zip !== '-') {
-                $decoded_zip = rawurldecode($zip);
-                $decoded_zip = mb_convert_kana($decoded_zip, "a");
-                mb_regex_encoding('UTF-8');
-                mb_internal_encoding('UTF-8');
+        $q           = $addr->newQuery();
+        $decoded_zip = Models\Address::processZip($zip);
+        $q->orWhere('zip', '=', $decoded_zip);
 
-                $decoded_zip = mb_ereg_replace('[-ー－―]', '', $decoded_zip);
-
-                if (strlen($decoded_zip) == 7) {
-                    $decoded_zip = substr($decoded_zip, 0, 3) . '-' . substr($decoded_zip, 3, 4);
-                    $q->orWhere('zip', '=', $decoded_zip);
-                }
-            }
-        }
         $this->_filterFuri($ken_furi, $q, 'ken_furi');
         $this->_filterFuri($city_furi, $q, 'city_furi');
         $this->_filterFuri($town_furi, $q, 'town_furi');
@@ -64,17 +52,10 @@ class AddressController extends Controller
 
         $addr = new Models\Address();
         /** @var Builder $q */
-        $q = $addr->newQuery();
-        if (isset($searchWord)) {
-            if ($searchWord != "_" && $searchWord != "-") {
-                $decoded_searchWord = rawurldecode($searchWord);
-                $decoded_searchWord = mb_convert_kana($decoded_searchWord, "a");
-                if (strlen($decoded_searchWord) == 7) {
-                    $decoded_searchWord = substr($decoded_searchWord, 0, 3) . '-' . substr($decoded_searchWord, 3, 4);
-                    $q->orWhere('zip', '=', $decoded_searchWord);
-                }
-            }
-        }
+        $q                  = $addr->newQuery();
+        $decoded_searchWord = Models\Address::processZip($searchWord);
+        $q->orWhere('zip', '=', $decoded_searchWord);
+
         $this->_filterFuri($searchWord, $q, 'ken_furi');
         $this->_filterFuri($searchWord, $q, 'city_furi');
         $this->_filterFuri($searchWord, $q, 'town_furi');
