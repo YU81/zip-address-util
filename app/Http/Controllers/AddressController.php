@@ -24,7 +24,7 @@ class AddressController extends Controller
 
                 if (strlen($decoded_zip) == 7) {
                     $decoded_zip = substr($decoded_zip, 0, 3) . '-' . substr($decoded_zip, 3, 4);
-                    $q->orwhere('zip', '=', $decoded_zip);
+                    $q->orWhere('zip', '=', $decoded_zip);
                 }
             }
         }
@@ -71,7 +71,7 @@ class AddressController extends Controller
                 $decoded_searchWord = mb_convert_kana($decoded_searchWord, "a");
                 if (strlen($decoded_searchWord) == 7) {
                     $decoded_searchWord = substr($decoded_searchWord, 0, 3) . '-' . substr($decoded_searchWord, 3, 4);
-                    $q->orwhere('zip', '=', $decoded_searchWord);
+                    $q->orWhere('zip', '=', $decoded_searchWord);
                 }
             }
         }
