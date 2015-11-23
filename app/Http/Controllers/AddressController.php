@@ -15,9 +15,9 @@ class AddressController extends Controller
         $decoded_zip = Models\Address::processZip($zip);
         $q->orWhere('zip', '=', $decoded_zip);
 
-        $this->_filterFuri($ken_furi, $q, 'ken_furi');
-        $this->_filterFuri($city_furi, $q, 'city_furi');
-        $this->_filterFuri($town_furi, $q, 'town_furi');
+        foreach (['ken_furi', 'city_furi', 'town_furi'] as $col) {
+            Models\Address::filterQueryFuri(${$col}, $q, $col);
+        }
 
         /** @var \Illuminate\Database\Eloquent\Collection|static[] $results */
         $results = $q->take(10)->get([
@@ -55,14 +55,12 @@ class AddressController extends Controller
         $decoded_searchWord = Models\Address::processZip($searchWord);
         $q->orWhere('zip', '=', $decoded_searchWord);
 
-        $this->_filterFuri($searchWord, $q, 'ken_furi');
-        $this->_filterFuri($searchWord, $q, 'city_furi');
-        $this->_filterFuri($searchWord, $q, 'town_furi');
-        $this->_filterKanji($searchWord, $q, 'ken_name');
-        $this->_filterKanji($searchWord, $q, 'city_name');
-        $this->_filterKanji($searchWord, $q, 'town_name');
-        $this->_filterKanji($searchWord, $q, 'kyoto_street');
-        $this->_filterKanji($searchWord, $q, 'block_name');
+        foreach (['ken_furi', 'city_furi', 'town_furi'] as $col) {
+            Models\Address::filterQueryFuri($searchWord, $q, $col);
+        }
+        foreach (['ken_name', 'city_name', 'town_name', 'kyoto_street', 'block_name'] as $col) {
+            Models\Address::filterQueryKanji($searchWord, $q, $col);
+        }
 
         /** @var \Illuminate\Database\Eloquent\Collection|static[] $results */
         $results = $q->take(100)->get([
