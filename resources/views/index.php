@@ -56,15 +56,17 @@
             </tr>
             <?php
             $output = '';
-            foreach ($results as $addr) {
-                /** @var App\Models\Address $addr */
-                $output .= '<tr>';
-                $output .= '<td>' . $addr->zip . '</td>'
-                    . '<td><span>' . $addr->ken_name . '</span></td>'
-                    . '<td><span>' . $addr->city_name . '</span></td>'
-                    . '<td><span>' . $addr->getWholeAddress() . '</span></td>'
-                    . '<td><span>' . $addr->getWholeAddressReading() . '</span></td>';
-                $output .= '</tr>';
+            if (isset($results)) {
+                foreach ($results as $addr) {
+                    /** @var App\Models\Address $addr */
+                    $output .= '<tr>';
+                    $output .= '<td>' . $addr->zip . '</td>'
+                        . '<td><span>' . $addr->ken_name . '</span></td>'
+                        . '<td><span>' . $addr->city_name . '</span></td>'
+                        . '<td><span>' . $addr->getWholeAddress() . '</span></td>'
+                        . '<td><span>' . $addr->getWholeAddressReading() . '</span></td>';
+                    $output .= '</tr>';
+                }
             }
             echo $output;
             ?>
