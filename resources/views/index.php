@@ -44,7 +44,12 @@
         if (@$count === 0) {
             echo 'マッチする検索結果はありませんでした。';
         } elseif (isset($results)) {
-            echo '<span>' . $count . '件見つかりました。' . '</span>';
+            if (count(array_intersect($maxCountList, [$count])) === 1) {
+                echo '<span>' . $count . '件以上見つかりました。' . '</span>';
+            } else {
+                echo '<span>' . $count . '件見つかりました。' . '</span>';
+            }
+        }
         ?>
         <table class="table table-bordered">
             <tr>
