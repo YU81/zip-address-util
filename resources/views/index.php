@@ -23,6 +23,19 @@
                    } ?>
             >
             <button class="btn btn-success col-lg-2 glyphicon-search">検索</button>
+            <select name="max_count" id="max_count" class="form-control-static">
+                <?php
+                $maxCountList = [50, 100, 200, 500, 1000];
+                foreach ($maxCountList as $val) {
+                    /** @var int $maxCount */
+                    if (isset($maxCount) && $val === $maxCount) {
+                        echo '<option value="' . $val . '" selected>' . $val . '</option>';
+                    } else {
+                        echo '<option value="' . $val . '">' . $val . '</option>';
+                    }
+                }
+                ?>
+            </select>
         </form>
     </div>
     <div id="result" class="row">
