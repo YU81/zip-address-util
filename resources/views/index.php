@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="row">
-        <form name="search_form" method="get" action="/address/result" class="col-lg-6 col-lg-offset-3">
+        <form name="search_form" method="get" action="/address/result" class="col-lg-6 col-lg-offset-3 form-group">
             <input type="text" class="input-sm col-lg-6" name="search" title="search" id="search"
                    value=<?php
                    /** @var string $searchWord */
