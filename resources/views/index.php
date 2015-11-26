@@ -45,8 +45,13 @@
             echo 'マッチする検索結果はありませんでした。';
         } elseif (isset($results)) {
             echo '<span>' . $count . '件見つかりました。' . '</span>';
-            echo '<table class="table table-bordered">';
-            echo '<th>郵便番号</th><th>住所表記</th>';
+        ?>
+        <table class="table table-bordered">
+            <tr>
+                <th>郵便番号</th>
+                <th>住所表記</th>
+            </tr>
+            <?php
             $output = '';
             foreach ($results as $addr) {
                 /** @var App\Models\Address $addr */
