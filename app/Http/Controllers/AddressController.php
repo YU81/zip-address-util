@@ -48,6 +48,7 @@ class AddressController extends Controller
     public function searchResult()
     {
         $searchWord = Input::get('search', '');
+        $maxCount   = (int)Input::get('max_count', 100);
 
         $addr = new Models\Address();
         /** @var \Illuminate\Database\Query\Builder $q */
@@ -63,7 +64,7 @@ class AddressController extends Controller
         }
 
         /** @var \Illuminate\Database\Eloquent\Collection|static[] $results */
-        $results = $q->take(100)->get([
+        $results = $q->take($maxCount)->get([
             'ken_id',
             'zip',
             'ken_name',
@@ -80,6 +81,6 @@ class AddressController extends Controller
 
         $resultCount = count($results);
 
-        return view('index', ['results' => $results, 'count' => $resultCount, 'searchWord' => $searchWord]);
+        return view('index', ['results' => $results, 'count' => $resultCount, 'searchWord' => $searchWord, 'maxCount' => $maxCount]);
     }
 }
