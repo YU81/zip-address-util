@@ -49,7 +49,10 @@
         <table class="table table-bordered">
             <tr>
                 <th>郵便番号</th>
+                <th>都道府県</th>
+                <th>市区町村</th>
                 <th>住所表記</th>
+                <th>住所表記フリガナ</th>
             </tr>
             <?php
             $output = '';
@@ -57,6 +60,8 @@
                 /** @var App\Models\Address $addr */
                 $output .= '<tr>';
                 $output .= '<td>' . $addr->zip . '</td>'
+                    . '<td><span>' . $addr->ken_name . '</span></td>'
+                    . '<td><span>' . $addr->city_name . '</span></td>'
                     . '<td><span>' . $addr->getWholeAddress() . '</span></td>'
                     . '<td><span>' . $addr->getWholeAddressReading() . '</span></td>';
                 $output .= '</tr>';
