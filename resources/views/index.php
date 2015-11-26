@@ -47,14 +47,18 @@
             echo '<span>' . $count . '件見つかりました。' . '</span>';
             echo '<table class="table table-bordered">';
             echo '<th>郵便番号</th><th>住所表記</th>';
+            $output = '';
             foreach ($results as $addr) {
                 /** @var App\Models\Address $addr */
-                echo '<tr>';
-                echo '<td>' . $addr->zip . '</td>' . '<td><span>' . $addr->getWholeAddress() . '</span></td><td><span>' . $addr->getWholeAddressReading() . '</span></td>';
-                echo '</tr>';
+                $output .= '<tr>';
+                $output .= '<td>' . $addr->zip . '</td>'
+                    . '<td><span>' . $addr->getWholeAddress() . '</span></td>'
+                    . '<td><span>' . $addr->getWholeAddressReading() . '</span></td>';
+                $output .= '</tr>';
             }
-            echo '</table>';
-        } ?>
+            echo $output;
+            ?>
+        </table>
     </div>
 </div>
 <script src="/assets/js/jquery.min.js"></script>
