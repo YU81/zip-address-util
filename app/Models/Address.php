@@ -16,6 +16,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $delete_flg
  * @property string $ken_name
  * @property string $ken_furi
+ * @property string $city_name
+ * @property string $city_furi
  * @property string $town_name
  * @property string $town_furi
  * @property string $town_memo
